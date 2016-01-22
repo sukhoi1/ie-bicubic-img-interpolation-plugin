@@ -1,6 +1,4 @@
-// Anton Lygin
-// 25 Jan, 2016
-//IE img -ms-interpolation-mode: bicubic fix on page load
+//IE img -ms-interpolation-mode: bicubic fix
 var drawCanvas = function(can, imgW, imgH, src) {
 
     var ctx = can.getContext('2d');
@@ -26,7 +24,7 @@ var drawCanvas = function(can, imgW, imgH, src) {
     img.src = src;
 }
 
-$('img').each(function() {
+$('img.first').each(function() {
 			var src = $(this).attr('src');
       var imgW = this.width;
       var imgH = this.height;
