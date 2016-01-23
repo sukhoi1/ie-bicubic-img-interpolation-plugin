@@ -45,10 +45,3 @@ $('img.first').each(function() {
       var callback = drawHighResolutionImgThumbnail;
       drawCanvas(can, imgW*6, imgH*6, src, callback, this);
 });
-
-// parameters
-// - convertTo: 'img' //'canvas' is not implemented
-// getRequestTimestamp: false, //addTimetampToImgUrl
-// dataScr: true, //copy scr attribute to data-src of result el
-// - canvas 2d vs WebGL
-// - crossOrigin: 'anonymous'
