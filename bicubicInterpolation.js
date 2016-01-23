@@ -1,8 +1,8 @@
 //
-// Anton Lygin, 25 Jan 2016 v0.1.1
+// Anton Lygin, 25 Jan 2016
 // bicubic-img-interpolation-plugin
 
-var drawCanvas = function(can, imgW, imgH, src, callback, id, classAttr) {
+var drawCanvas = function(can, imgW, imgH, src, callback, imgEl) {
 
     var ctx = can.getContext('2d');
 
@@ -24,46 +24,31 @@ var drawCanvas = function(can, imgW, imgH, src, callback, id, classAttr) {
         ctx2.drawImage(can2, 0, 0, w/4, h/4, 0, 0, w/6, h/6);
         ctx.drawImage(can2, 0, 0, w/6, h/6, 0, 0, w/6, h/6);
         if(callback) {
-        	callback(can, this.src, id, classAttr);
+        	callback(can, this.src, imgEl);
         }
     }
 
     img.src = src; //'?' + new Date().getTime(); //timestamp might be required //stop GET request caching
 }
 
-var drawHighResolutionImgThumbnail = function(can, attrSrc, id, classAttr) {
-  var imgSrc = can.toDataURL("image/png");  //.replace("image/png", "image/octet-stream")
-  var imageEl = document.createElement('img');
-  imageEl.src = imgSrc;
-  imageEl.width = can.width;
-  imageEl.height = can.height;
-  $(imageEl).attr('data-src', attrSrc)
-  if(id) {
-  		$(imageEl).attr('id', id)
-  }
-  if(classAttr) {
-  		$(imageEl).attr('class', classAttr)
-  }
-  $(can).after(imageEl);
-  $(can).remove();
+var drawHighResolutionImgThumbnail = function(can, attrSrc, imgEl) {
+  $(imgEl).attr('src', can.toDataURL("image/png"));
+  $(imgEl).attr('data-src', attrSrc);
 };
 
 $('img.first').each(function() {
 			var src = $(this).attr('src');
       var imgW = this.width;
       var imgH = this.height;
-      var displayNone = ""; //style='display: none'";
-      $(this).after("<canvas " + displayNone + " width='" + imgW +  "' height='" + imgH + "'></canvas>");
+      $(this).after("<canvas style='display: none' width='" + imgW +  "' height='" + imgH + "'></canvas>");
       var can = $(this).next()[0];
       var callback = drawHighResolutionImgThumbnail;
-      drawCanvas(can, imgW*6, imgH*6, src, callback, $(this).attr('id'), $(this).attr('class'));
-      $(this).remove();
+      drawCanvas(can, imgW*6, imgH*6, src, callback, this);
 });
 
 // parameters
-// convertTo: 'img', 'canvas'
+// - convertTo: 'img' //'canvas' is not implemented
 // getRequestTimestamp: false, //addTimetampToImgUrl
 // dataScr: true, //copy scr attribute to data-src of result el
-// attrs: [] //width, height, id, class
 // - canvas 2d vs WebGL
 // - crossOrigin: 'anonymous'
