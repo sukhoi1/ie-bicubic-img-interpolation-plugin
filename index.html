@@ -1,10 +1,12 @@
 <html>
 <head>
     <meta charset="utf-8">
+    
+    <!-- enable canvas for old versions of IE -->
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="edit-Type" edit="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script type="text/javascript" src="https://rawgit.com/rwaldron/8720084/raw/699692986f1aedc64614c746bf2eec5997b1cdfe/jquery.js"></script>
+    
     <style>canvas { border: 1px solid gray; }</style>
 </head>
 <body>
@@ -17,5 +19,14 @@ IE <b>pixelated</b> high resolution img rendering:</br>
 
 Source code and documentation:</br><a target="_blank" href="https://github.com/Lygin/ie-bicubic-img-interpolation-plugin/wiki">github.com/Lygin/ie-bicubic-img-interpolation-plugin</a>
 
+<script type="text/javascript" src="https://rawgit.com/rwaldron/8720084/raw/699692986f1aedc64614c746bf2eec5997b1cdfe/jquery.js"></script>
+<script type="text/javascript" src="https://rawgit.com/Lygin/ie-bicubic-img-interpolation-plugin/master/bicubicInterpolation.js"></script>
+<script>
+    $( document ).ready(function() {
+        $('img.first').bicubicImgInterpolation({
+        		crossOrigin: 'anonymous' //otherwise browser security error is triggered
+        });
+    });
+</script>
 </body>
 </html>
