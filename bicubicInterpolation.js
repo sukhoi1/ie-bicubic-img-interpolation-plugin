@@ -32,8 +32,7 @@ var drawCanvas = function(can, imgW, imgH, src, callback, id, classAttr) {
 }
 
 var drawHighResolutionImgThumbnail = function(can, attrSrc, id, classAttr) {
-  debugger;
-	var imgSrc = can.toDataURL("image/png");  //.replace("image/png", "image/octet-stream")
+  var imgSrc = can.toDataURL("image/png");  //.replace("image/png", "image/octet-stream")
   var imageEl = document.createElement('img');
   imageEl.src = imgSrc;
   imageEl.width = can.width;
