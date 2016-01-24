@@ -1,5 +1,5 @@
 //
-// Anton Lygin, 25 Jan 2016
+// https://github.com/sukhoi1, 25 Jan 2016
 // bicubic-img-interpolation v0.1.1 jQuery plugin
 
 $.fn.bicubicImgInterpolation = function(settings) {
